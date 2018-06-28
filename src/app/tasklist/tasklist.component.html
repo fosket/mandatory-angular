@@ -1,5 +1,14 @@
 <div class="header">
   <!-- Render status type for this task list here... -->
+  <h2>{{statusType}}</h2>
+
 </div>
 
 <!-- Markup for displaying all tasks that have the status type of this list set... -->
+<div>
+  <task
+    *ngFor="let task of tasks"
+    [task]="task"
+    (statusChanged)="handleStatusChanged($event)">
+  </task>
+</div>

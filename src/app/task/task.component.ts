@@ -1,4 +1,5 @@
-import { Component} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {UtilService} from "../util.service";
 
 @Component({
   selector: 'task',
@@ -7,5 +8,17 @@ import { Component} from '@angular/core';
 })
 export class TaskComponent {
 
-  constructor() {}
+  @Input() task;
+  @Output() statusChanged = new EventEmitter();
+
+
+
+  constructor(private utilService: UtilService) {}
+
+  changeStatus(updatedStatus) {
+    //this.task.status = updatedStatus;
+
+    this.statusChanged.emit({id: this.task.id, status: updatedStatus});
+    //console.log(this.task)
+  }
 }
